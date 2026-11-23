@@ -1,0 +1,30 @@
+name: Rooster bijwerken
+
+on:
+  schedule:
+    - cron: "0 5 * * 1-5"
+    - cron: "0 11 * * 1-5"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rooster ophalen en pagina bouwen
+        env:
+          ICS_URLS: ${{ secrets.ICS_URLS }}
+        run: python build.py
+      - name: Pagina opslaan
+        run: |
+          git config user.name "rooster-bot"
+          git config user.email "rooster-bot@users.noreply.github.com"
+          git add docs/index.html
+          git commit -m "Rooster bijgewerkt" || echo "Geen wijzigingen"
+          git push
