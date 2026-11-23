@@ -1,0 +1,12 @@
+{
+  "titel": "Vrije lokalen – Campus Merelbeke",
+  "uitleg": "Groen = vrij om te studeren. Grijs = bezet. Gearceerd = gebouw gesloten. Last-minute boekingen kunnen nog wijzigen tot de volgende update.",
+  "tijdzone": "Europe/Brussels",
+  "dag_start": "08:00",
+  "dag_einde": "19:00",
+  "min_vrij_minuten": 30,
+  "aantal_dagen": 10,
+  "enkel_weekdagen": true,
+  "sluiting_activiteiten": ["Efficiënt gebouwbeheer"],
+  "lokaalnamen": {}
+}
