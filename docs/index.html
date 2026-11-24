@@ -38,10 +38,22 @@
 <body>
 <main>
   <h1>Vrije lokalen – Campus Merelbeke</h1>
-  <p class="meta">Laatst bijgewerkt: dinsdag 24 november om 08u56</p>
+  <p class="meta">Laatst bijgewerkt: dinsdag 24 november om 09u02</p>
   <p class="meta">Groen = vrij om te studeren. Grijs = bezet. Gearceerd = gebouw gesloten. Last-minute boekingen kunnen nog wijzigen tot de volgende update.</p>
 
-  <h2>Vandaag: vrij om te studeren</h2>
+  <div id="verouderd" hidden style="background:#fdecea;border:1px solid #e0a39c;color:#8a1c12;border-radius:8px;padding:10px 14px;margin-top:16px">
+    Let op: dit rooster is vandaag nog niet bijgewerkt. De uren hieronder kunnen verouderd zijn.
+  </div>
+  <script>
+    (function () {
+      var bouw = "2026-11-24", nu = new Date();
+      var vandaag = nu.getFullYear() + "-" + String(nu.getMonth() + 1).padStart(2, "0") + "-" + String(nu.getDate()).padStart(2, "0");
+      var werkdag = nu.getDay() >= 1 && nu.getDay() <= 5;
+      if (werkdag && nu.getHours() >= 9 && bouw < vandaag) document.getElementById("verouderd").hidden = false;
+    })();
+  </script>
+
+  <h2>Vandaag, dinsdag 24 november: vrij om te studeren</h2>
   <div class="kaarten"><div class="kaart"><h3>Auditorium 1 (D1)</h3><ul><li>10u – 19u</li></ul></div><div class="kaart"><h3>Auditorium D (D4)</h3><ul><li>8u – 10u</li><li>12u30 – 19u</li></ul></div><div class="kaart"><h3>Leslokaal 1.1 (D6)</h3><ul><li>17u15 – 19u</li></ul></div></div>
 
   <h2>Komende dagen</h2>
