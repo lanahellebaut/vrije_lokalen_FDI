@@ -41,6 +41,18 @@
   <p class="meta">Laatst bijgewerkt: {{BIJGEWERKT}}</p>
   <p class="meta">{{UITLEG}}</p>
 
+  <div id="verouderd" hidden style="background:#fdecea;border:1px solid #e0a39c;color:#8a1c12;border-radius:8px;padding:10px 14px;margin-top:16px">
+    Let op: dit rooster is vandaag nog niet bijgewerkt. De uren hieronder kunnen verouderd zijn.
+  </div>
+  <script>
+    (function () {
+      var bouw = "{{BOUWDATUM}}", nu = new Date();
+      var vandaag = nu.getFullYear() + "-" + String(nu.getMonth() + 1).padStart(2, "0") + "-" + String(nu.getDate()).padStart(2, "0");
+      var werkdag = nu.getDay() >= 1 && nu.getDay() <= 5;
+      if (werkdag && nu.getHours() >= 9 && bouw < vandaag) document.getElementById("verouderd").hidden = false;
+    })();
+  </script>
+
   <h2>{{TITEL_DAG}}: vrij om te studeren</h2>
   <div class="kaarten">{{VANDAAG}}</div>
 
