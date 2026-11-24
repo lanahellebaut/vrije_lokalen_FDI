@@ -152,7 +152,7 @@ def render(rooms, now):
 
     vandaag = []
     first_day = days[0]
-    titel_dag = "Vandaag" if first_day == today else f"Eerstvolgende werkdag ({dag_label(first_day)})"
+    titel_dag = f"Vandaag, {dag_label(first_day)}" if first_day == today else f"Eerstvolgende werkdag, {dag_label(first_day)}"
     for name, events in rooms.items():
         free, _, _, _ = day_slots(events, first_day)
         items = "".join(f"<li>{hm(s)} – {hm(t)}</li>" for s, t, _ in free) or '<li class="geen">geen vrije uren</li>'
@@ -176,6 +176,7 @@ def render(rooms, now):
                .replace("{{UITLEG}}", html.escape(CONFIG.get("uitleg", "")))
                .replace("{{BIJGEWERKT}}", f"{dag_label(today)} om {hm(now)}")
                .replace("{{TITEL_DAG}}", titel_dag)
+               .replace("{{BOUWDATUM}}", today.isoformat())
                .replace("{{VANDAAG}}", "".join(vandaag))
                .replace("{{WEKEN}}", "".join(weken)))
 
