@@ -2,8 +2,7 @@ name: Rooster bijwerken
 
 on:
   schedule:
-    - cron: "17 4 * * 1-5"
-    - cron: "17 10 * * 1-5"
+    - cron: "23 */2 * * *"
   workflow_dispatch: {}
 
 permissions:
