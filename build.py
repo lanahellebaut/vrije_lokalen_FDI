@@ -141,6 +141,11 @@ def ticks(w0, w1):
     return "".join(out)
 
 
+def anker(name):
+    import re
+    return "lokaal-" + re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+
+
 def render(rooms, now):
     today = now.date()
     werkdagen = CONFIG.get("enkel_weekdagen", True)
@@ -156,7 +161,7 @@ def render(rooms, now):
     for name, events in rooms.items():
         free, _, _, _ = day_slots(events, first_day)
         items = "".join(f"<li>{hm(s)} – {hm(t)}</li>" for s, t, _ in free) or '<li class="geen">geen vrije uren</li>'
-        vandaag.append(f'<div class="kaart"><h3>{html.escape(name)}</h3><ul>{items}</ul></div>')
+        vandaag.append(f'<a class="kaart" href="#{anker(name)}"><h3>{html.escape(name)}</h3><ul>{items}</ul></a>')
 
     weken = []
     for name, events in rooms.items():
@@ -167,7 +172,7 @@ def render(rooms, now):
             rows.append(f'<div class="rij"><div class="dag">{kort}</div>'
                         f'<div class="balk">{bar(free, busy, w0, w1)}</div></div>')
         _, _, w0, w1 = day_slots([], days[0])
-        weken.append(f'<section><h3>{html.escape(name)}</h3>'
+        weken.append(f'<section id="{anker(name)}"><h3>{html.escape(name)}</h3>'
                      f'<div class="rij as"><div class="dag"></div><div class="schaal">{ticks(w0, w1)}</div></div>'
                      f'{"".join(rows)}</section>')
 
